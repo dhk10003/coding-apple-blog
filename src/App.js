@@ -31,7 +31,7 @@ function App() {
           return (
             <>
             <div className="list" key={i}>
-              <h4>{ a } <span onClick={()=>{
+              <h4>{ a } <span className="likeBtn" onClick={()=>{
                 let eachLike = [...like];
                 eachLike[i] += 1;
                 setLike(eachLike);
@@ -41,6 +41,15 @@ function App() {
                 setModal(!modal);
                 setModalTitleIndex(i);
               }}>Read More</span>
+              <br /><br />
+              <div><button onClick={() => {
+                let newTitle = [...title];
+                newTitle.splice(i, 1);
+                setTitle(newTitle);
+                let newLike = [...like];
+                newLike.splice(i, 1);
+                setLike(newLike);
+              }}>Delete</button></div>    
             </div>
             </>
           )
@@ -56,6 +65,9 @@ function App() {
         let newTitle = [...title];
         newTitle.unshift(input);
         setTitle(newTitle);
+        let newLike = [...like];
+        newLike.unshift(0);
+        setLike(newLike);
         document.querySelector('input').value = '';
         setInput('');
       }}>Upload</button>
