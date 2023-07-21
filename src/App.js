@@ -15,6 +15,8 @@ function App() {
   let [modal, setModal] = useState(false);
   let [modalTitleIndex, setModalTitleIndex] = useState(0);
 
+  let [input, setInput] = useState('');
+
 
 
 
@@ -35,7 +37,7 @@ function App() {
                 setLike(eachLike);
                 }}>👍 {like[i]}</span></h4>
               <p>2월 17일 발행</p>
-              <span onClick={()=>{
+              <span className="readMore" onClick={()=>{
                 setModal(!modal);
                 setModalTitleIndex(i);
               }}>Read More</span>
@@ -44,6 +46,19 @@ function App() {
           )
         })
       }
+      <input type="text" onChange={(e) => {
+        setInput(e.target.value);
+      }} />
+      <button onClick={() => {
+        if(input === '') {
+          return;
+        }
+        let newTitle = [...title];
+        newTitle.unshift(input);
+        setTitle(newTitle);
+        document.querySelector('input').value = '';
+        setInput('');
+      }}>Upload</button>
 
       {modal ? <Modal title={title[modalTitleIndex]}/> : null}
 

@@ -21,6 +21,18 @@ body{
         padding-bottom: 10px;
         text-align: left;
         border-bottom: 1px solid gray;
+
+        .readMore {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    input {
+        padding: 10px;
+        margin: 20px;
+        width: 300px;
     }
     
 }
