@@ -12,11 +12,11 @@ function App() {
   });
   let [like, setLike] = useState(likeArr);
 
-  let modalArr = [];
-  title.map((a, i) => {
-    modalArr[i] = false;
-  });
-  let [modal, setModal] = useState(modalArr);
+  let [modal, setModal] = useState(false);
+  let [modalTitleIndex, setModalTitleIndex] = useState(0);
+
+
+
 
   return (
     <div className="App">
@@ -36,16 +36,16 @@ function App() {
                 }}>👍 {like[i]}</span></h4>
               <p>2월 17일 발행</p>
               <span onClick={()=>{
-                let eachModal = [...modal];
-                eachModal[i] = !eachModal[i];
-                setModal(eachModal);
+                setModal(!modal);
+                setModalTitleIndex(i);
               }}>Read More</span>
             </div>
-            {modal[i] ? <Modal title={a}/> : null}
             </>
           )
         })
       }
+
+      {modal ? <Modal title={title[modalTitleIndex]}/> : null}
 
    </div>
   )
